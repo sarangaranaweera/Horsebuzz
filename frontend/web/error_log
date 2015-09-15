@@ -1,0 +1,5 @@
+[09-Sep-2015 10:53:52 Australia/Sydney] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/apphorsd/public_html/horsebuzz/frontend/models/SignupForm.php on line 103
+[09-Sep-2015 10:57:01 Australia/Sydney] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/apphorsd/public_html/horsebuzz/frontend/models/SignupForm.php on line 103
+[09-Sep-2015 10:57:13 Australia/Sydney] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/apphorsd/public_html/horsebuzz/frontend/models/SignupForm.php on line 103
+[09-Sep-2015 11:00:49 Australia/Sydney] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/apphorsd/public_html/horsebuzz/frontend/models/SignupForm.php on line 103
+[09-Sep-2015 11:03:13 Australia/Sydney] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/apphorsd/public_html/horsebuzz/frontend/models/SignupForm.php on line 103

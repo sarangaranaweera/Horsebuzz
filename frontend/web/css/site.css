@@ -1,0 +1,279 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+#map {
+    border: 1px solid #DDD;
+    width:300px;
+    height: 300px;
+    margin: 10px 0 10px 0;
+    -webkit-box-shadow: #AAA 0px 0px 15px;
+}
+
+#legend {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+.map-wrapper
+{
+    float:left;
+    margin: 0 10px 0 10px;
+}
+
+.ui-autocomplete-input, .input input {
+    border: none;
+    font-size: 14px;
+    width: 300px;
+    height: 24px;
+    margin-bottom: 5px;
+    padding-top: 2px;
+}
+
+textarea
+{
+    border-color: lightgray;
+    font-size: 14px;
+    width: 600px;
+    margin-bottom: 5px;
+    padding-top: 2px;
+}
+
+.ui-autocomplete-input {
+    border: 1px solid #DDD !important;
+    padding-top: 0px !important;
+}
+
+table.detail-view th {
+    width: 25%;
+}
+
+table.detail-view td {
+    width: 75%;
+}
+
+.red-navbar{
+    background-color: #E66060;
+}
+
+.navbar-header a{
+    font-size: 18px;
+    color: #FFF;
+}
+
+.navbar-collapse a{
+    color: #FFF;
+}
+
+.navbar-brand img{
+    height: 20px;
+    width: 20px;
+}
+
+
+
+
+.navbar-collapse a:hover {
+    color: #666;
+    border-radius: 4px;
+}
+.navbar-collapse a:focus {
+    color: #666;
+    border-radius: 4px;
+}
+
+.btn-success {
+    background-color: #E66060;
+    border-color: #E66060;
+}
+
+.btn-success:focus {
+    background-color: #E66060;
+    border-color: #E66060;
+}
+
+.container h1{
+    color: #666;
+}
+
+.container label{
+    color: #666;
+}
+
+
+.form-group button {
+    background-color: #E66060;
+    border-color: #E66060;
+    background-image: inherit;
+}
+
+.form-group button:target {
+    background-color: #E66060;
+    border-color: #E66060;
+    background-image: inherit;
+    outline: none;
+}
+
+
+.form-group button:hover,button:focus{
+    background-color: #E66060;
+    border-color: #E66060;
+    outline: none;
+
+}
+
+.form-group button:focus{
+    background-color: #E66060;
+    border-color: #E66060;
+    outline: none;
+}
+
+.common-button a:hover {
+    background-color: #E66060;
+    border-color: #E66060;
+    outline: none;
+}
+.common-button a:focus {
+    background-color: #E66060;
+    border-color: #E66060;
+    outline: none;
+}
+
+.navbar-brand img {
+    height: 25px;
+    width: 50px;
+}
+
+.form-group.required .control-label:after {
+     content: "*";
+     color: #e66060;
+}
+
+.popover {
+    width: 100%;
+}
+
+.popover-content{
+    color: #666;
+}
+
+.tooltip-inner {
+    width: 300px;
+}
+
+.label-info{
+    background-color: #666 !important;;
+}
+
+.navbar-header .navbar-toggle .icon-bar{
+    background-color: #fff ;
+}
+
+.navbar-header .navbar-toggle {
+    border-radius: 2px ;
+    border-color: #fff;
+}
+
+
+
+
