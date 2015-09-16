@@ -84,9 +84,10 @@ class EventSearch extends Event
         return $dataProvider;
     }
 
-    public function showCheckin()
+    public static function showCheckin($id)
     {
-        echo "hello weor";
+        
+        return '<a href="">This id is</a> '.$id;
     }
 
 }

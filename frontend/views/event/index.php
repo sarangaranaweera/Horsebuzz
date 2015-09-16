@@ -44,10 +44,20 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'interest_id',
                 'label' => 'Event Category',
-                //'value' => 'interest.area_intrest',
-                'value' => function ($data){ return "This";}
+                'value' => 'interest.area_intrest',
+                // 'value' => function($model){
+                //     return Html::link('LINK', '#');
+                // } 
             ],
-            'title',
+            [
+    'attribute' => 'some_title',
+    'format' => 'raw',
+    'value' => function ($model) {                      
+            //return '<div>'.$model->id.' and other html-code</div>';
+       return  EventSearch::showCheckin($model->id);
+    },
+],
+            //'title',
             'description:html',
             'location',
             'start_date',

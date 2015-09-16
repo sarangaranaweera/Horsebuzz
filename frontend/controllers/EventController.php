@@ -40,12 +40,15 @@ class EventController extends Controller
         $searchModel = new EventSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $checkinUsers = $searchModel->showCheckin();
+        // $checkinUsers = $searchModel->showCheckin();
+
+        // $x =$searchModel::showCheckin();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'showCheckin'  => $checkinUsers,
+            //'showCheckin'  => $checkinUsers,
+            
         ]);
     }
 
