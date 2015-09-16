@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use common\models\Areaintrest;
+use frontend\models\EventSearch;
 use yii\helpers\Url;
 //use kartik\grid\GridView;
 /* @var $this yii\web\View */
@@ -43,7 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'interest_id',
                 'label' => 'Event Category',
-                'value' => 'interest.area_intrest',
+                //'value' => 'interest.area_intrest',
+                'value' => function ($data){ return "This";}
             ],
             'title',
             'description:html',

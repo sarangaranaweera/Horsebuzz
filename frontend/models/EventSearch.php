@@ -84,6 +84,9 @@ class EventSearch extends Event
         return $dataProvider;
     }
 
-   
+    public function showCheckin()
+    {
+        echo "hello weor";
+    }
 
 }
