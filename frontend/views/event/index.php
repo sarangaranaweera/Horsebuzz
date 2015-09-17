@@ -50,13 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 // } 
             ],
             [
-    'attribute' => 'some_title',
-    'format' => 'raw',
-    'value' => function ($model) {                      
-            //return '<div>'.$model->id.' and other html-code</div>';
-       return  EventSearch::showCheckin($model->id);
-    },
-],
+                'attribute' => 'Num of Check in',
+                'format' => 'raw',
+                'value' => function ($model) {                      
+                   return  EventSearch::showCheckin($model->id);
+                },
+            ],
             //'title',
             'description:html',
             'location',

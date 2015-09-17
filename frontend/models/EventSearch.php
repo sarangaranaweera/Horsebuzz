@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Event;
+use common\models\Checkin;
 
 /**
  * EventSearch represents the model behind the search form about `common\models\Event`.
@@ -86,8 +87,11 @@ class EventSearch extends Event
 
     public static function showCheckin($id)
     {
-        
-        return '<a href="">This id is</a> '.$id;
+        $checkin = Checkin::find()
+                ->where('event_id='.$id)
+                ->count();
+
+        return '<span class="label label-danger">'.$checkin.'</span>';
     }
 
 }

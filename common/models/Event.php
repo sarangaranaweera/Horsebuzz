@@ -32,6 +32,9 @@ class Event extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $cnt;
+
     public static function tableName()
     {
         return 'event';
