@@ -2,9 +2,20 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
+
+
+$script = <<< JS
+$(document).ready(function() {
+    setInterval(function(){ $("#refreshButton").click(); }, 3000);
+});
+JS;
+$this->registerJs($script);
+
+
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Events', 'url' => ['index']];
@@ -44,5 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ],
     ]) ?>
+<?php $time='WELCOME';?>
+<?php Pjax::begin(['timeout' => 3000 ]); ?>
+<?= Html::a("Refresh", ['event/view'], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
+<h1>Current time: <?= $time ?></h1>
+<?php Pjax::end(); ?>
 
 </div>

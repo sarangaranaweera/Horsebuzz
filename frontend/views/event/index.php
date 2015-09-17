@@ -6,10 +6,19 @@ use yii\helpers\ArrayHelper;
 use common\models\Areaintrest;
 use frontend\models\EventSearch;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 //use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\EventSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$script = <<< JS
+$(document).ready(function() {
+    setInterval(function(){ $("#refreshButton").click(); }, 3000);
+});
+JS;
+$this->registerJs($script);
+
+
 
 $this->title = 'Events';
 $this->params['breadcrumbs'][] = $this->title;
@@ -82,6 +91,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]);
    ?>
+<?php $time='WELCOME';?>
+<?php Pjax::begin(); ?>
+<?= Html::a("Refresh", ['event/index'], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
+<h1>Current time: <?= time('H:i:s') ?></h1>
+<?php Pjax::end(); ?>
+
+
+
+
+
     <?php
     // You only need add this,
     $this->registerJs('

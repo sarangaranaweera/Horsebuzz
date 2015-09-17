@@ -96,6 +96,11 @@ class EventController extends Controller
         }
     }
 
+    public function actionTake()
+    {
+         return $this->render('index', ['time' => date('H:i:s')]);
+    }
+
     /**
      * Updates an existing Event model.
      * If update is successful, the browser will be redirected to the 'view' page.
