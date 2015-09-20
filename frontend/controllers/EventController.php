@@ -4,11 +4,14 @@ namespace frontend\controllers;
 
 use common\models\User;
 use Yii;
+use yii\db\Query;
 use common\models\Event;
+use common\models\Checkin;
 use frontend\models\EventSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Checkin as UCheckin;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -59,8 +62,26 @@ class EventController extends Controller
      */
     public function actionView($id)
     {
+
+        $query = new Query;
+        $query  ->select(['*'])  
+        ->from('checkin')
+        ->join( 'JOIN', 
+                'message',
+                'message.sender_id =checkin.user_id'
+            )
+        ->join('JOIN',
+                'user',
+                'user.id = checkin.user_id')
+        ->distinct()
+        ->all(); 
+$command = $query->createCommand();
+$data = $command->queryAll();               
+
+                        //die();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'messages' => $data
         ]);
     }
 

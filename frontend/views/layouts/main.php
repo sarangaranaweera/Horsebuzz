@@ -59,9 +59,14 @@ $this->registerJs($js);
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = [
+        /*$menuItems[] = [
             'label' => 'Profile',
             'url' => ['/site/profile'],
+            'linkOptions' => ['data-method' => 'post']
+        ];*/
+        $menuItems[] = [
+            'label' => 'Events',
+            'url' => ['/event/index'],
             'linkOptions' => ['data-method' => 'post']
         ];
 

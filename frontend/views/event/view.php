@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
 
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
 
@@ -57,8 +58,31 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 <?php $time='WELCOME';?>
 <?php Pjax::begin(['timeout' => 3000 ]); ?>
-<?= Html::a("Refresh", ['event/view'], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
-<h1>Current time: <?= $time ?></h1>
+<?= Html::a("Refresh", ['event/'.$model->id], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
+
+
+<?php
+
+foreach ($messages as $message) {
+   
+    ?>
+
+    <div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="<?php ?>" alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><?php echo $message['firstname'];?></h4>
+    
+    <?php echo $message['message'] ;?>
+  </div>
+</div>
+<?php }
+
+?>
+
 <?php Pjax::end(); ?>
 
 </div>
