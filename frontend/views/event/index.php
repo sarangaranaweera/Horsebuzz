@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $dataProvider1,
         'filterModel' => $searchModel,
         'rowOptions'=> function($modal, $key, $index, $grid) {
 
@@ -91,13 +91,41 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]);
    ?>
-<?php $time='WELCOME';?>
-<?php Pjax::begin(); ?>
-<?= Html::a("Refresh", ['event/index'], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
-<h1>Current time: <?= time('H:i:s') ?></h1>
-<?php Pjax::end(); ?>
 
 
+<?= GridView::widget([
+    'dataProvider' => $dataProvider2,
+    'columns' => [
+        //'id',
+    
+       ['class' => 'yii\grid\CheckboxColumn'],
+
+
+        'firstname',
+        'title',
+        //'created_at:datetime',
+        // ...
+    ],
+]) ?>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Send Message</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
+      <label class="form-group">Message:</label>
+      <textarea class="form-group"></textarea>
+      <br>
+      <label>Attach File:</label>
+      <input type="file" name="attach_file">
+      <br>
+      <button class="btn btn-success">Send</button>
+  </div>
+    </div>
+  </div>
+</div>
 
 
 

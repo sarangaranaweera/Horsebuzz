@@ -12,6 +12,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Checkin as UCheckin;
+use frontend\models\CheckinSearch;
+
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -40,8 +42,19 @@ class EventController extends Controller
         if (Yii::$app->user->isGuest)
             $this->redirect(Yii::$app->urlManager->createUrl('site/login'));
 
+        // echo print_r(Yii::$app->request->queryParams);
+        // die();
+
         $searchModel = new EventSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider1 = $searchModel->search(Yii::$app->request->queryParams);
+
+           // $Event = Event::find()->where(['organiser_id' => \Yii::$app->user->identity->id])->one();
+
+            //echo $Event->id;
+            //die();
+
+        $searchModel2 = new CheckinSearch();
+        $dataProvider2 = $searchModel2->searchUsers(\Yii::$app->user->identity->id);
 
         // $checkinUsers = $searchModel->showCheckin();
 
@@ -49,7 +62,8 @@ class EventController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider1' => $dataProvider1,
+            'dataProvider2' => $dataProvider2,
             //'showCheckin'  => $checkinUsers,
             
         ]);
@@ -64,7 +78,8 @@ class EventController extends Controller
     {
 
         $query = new Query;
-        $query  ->select(['*'])  
+        $query  ->select(['*']) 
+        ->distinct() 
         ->from('checkin')
         ->join( 'JOIN', 
                 'message',
@@ -73,7 +88,6 @@ class EventController extends Controller
         ->join('JOIN',
                 'user',
                 'user.id = checkin.user_id')
-        ->distinct()
         ->all(); 
 $command = $query->createCommand();
 $data = $command->queryAll();               

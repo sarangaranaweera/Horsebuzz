@@ -4,9 +4,11 @@ namespace frontend\models;
 
 use common\models\Users;
 use Yii;
+use Yii\db\Query;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Checkin;
+use common\models\Event;
 
 
 /**
@@ -91,5 +93,32 @@ class CheckinSearch extends Checkin
 
 
         return $dataProvider;
+    }
+
+    public function searchUsers($uid)
+    {
+        //echo $eid.'-'.$uid; die();
+       // echo \Yii::$app->user->identity->id; die();
+        $query = new Query;
+        $query  ->select(['user.firstname','event.title'])  
+                ->from('event')
+                ->where(['event.organiser_id' => $uid])
+                ->distinct()
+                ->join( 'JOIN', 
+                        'checkin',
+                        'event.id = checkin.event_id'
+                    )
+                ->join( 'LEFT JOIN',
+                         'user',
+                         'checkin.user_id = user.id'); 
+        
+
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+        
     }
 }
