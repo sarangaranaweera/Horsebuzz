@@ -100,7 +100,7 @@ class CheckinSearch extends Checkin
         //echo $eid.'-'.$uid; die();
        // echo \Yii::$app->user->identity->id; die();
         $query = new Query;
-        $query  ->select(['user.firstname','event.title'])  
+        $query  ->select(['user.id','user.firstname','event.title'])  
                 ->from('event')
                 ->where(['event.organiser_id' => $uid])
                 ->distinct()

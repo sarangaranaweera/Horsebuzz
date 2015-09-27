@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     </div>
 
-
+ <?= Yii::$app->session->getFlash('error'); ?>
    <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         'filterModel' => $searchModel,
@@ -111,6 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
    ?>
 
+    <form action="/Horsebuzz/frontend/web/event/send" enctype="multipart/form-data" method="post" id="send_msg">
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider2,
@@ -118,7 +119,12 @@ $this->params['breadcrumbs'][] = $this->title;
         //'id',
     
        ['class' => 'yii\grid\CheckboxColumn',
-            ],
+
+        'checkboxOptions' => function($model, $key, $index, $column) {
+                  return ['value' => $model['id']];
+            }
+       ],
+         
 
 
         'firstname',
@@ -135,16 +141,15 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-body">
-    <form action="/Horsebuzz/frontend/web/event/send" enctype="multipart/form-data" method="post" id="send_msg">
         <?= Html::csrfMetaTags() ?>
       <label class="form-group">Message:</label>
-      <input type="hidden" value="bnZ4aVhIMFEpARk5KwcFMlslGygKAkIHOT0SDBYcVB49NCItAQlXJw==" name="_csrf" >
+      <!-- <input type="hidden" value="bnZ4aVhIMFEpARk5KwcFMlslGygKAkIHOT0SDBYcVB49NCItAQlXJw==" name="_csrf" > -->
       <textarea class="form-group" name="message"></textarea>
       <br>
       <label>Attach File:</label>
       <input type="file" name="attach_file">
       <br>
-      <input type="submit" value="send" >
+      <input type="submit" value="send" class="btn btn-success">
       <!-- <button class="btn btn-success" id="btn_snd">Send</button> -->
   </form>
   </div>

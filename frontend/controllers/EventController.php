@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Checkin as UCheckin;
 use frontend\models\CheckinSearch;
+use frontend\models\Message;
 use yii\web\UploadedFile;
 
 
@@ -66,6 +67,8 @@ class EventController extends Controller
 
         // $x =$searchModel::showCheckin();
 
+        //$this->dd($dataProvider2);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider1' => $dataProvider1,
@@ -77,19 +80,26 @@ class EventController extends Controller
 
     public function actionSend()
     {
-        if (Yii::$app->request->isPost) {
-        $filename = UploadedFile::getInstance('', 'attach_file');
-
-        var_dump($filename); die();
-
-            if ($model->validate()) {                
-                $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
-            }
+         if(\Yii::$app->request->post()){
+            foreach (\Yii::$app->request->post('selection') as $value) {
+            $model = new Message;
+            $model->message = \Yii::$app->request->post('message');
+            $model->sender_id = \Yii::$app->user->id;
+            $filename = UploadedFile::getInstance($model, 'attach_file');
+            $this->dd($filename);
+                $model->receiver_id = $value;
+                $model->save();
+            } 
         }
-
-        echo print_r(Yii::$app->request->post(),1);
-        echo "success";
+           
+                 \Yii::$app->getSession()->setFlash('success', 'Message Sent');
+                return $this->redirect(['index']);
+           
     }
+       
+    
+
+    
 
     /**
      * Displays a single Event model.
