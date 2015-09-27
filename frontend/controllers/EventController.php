@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Checkin as UCheckin;
 use frontend\models\CheckinSearch;
+use yii\web\UploadedFile;
 
 
 /**
@@ -20,6 +21,10 @@ use frontend\models\CheckinSearch;
  */
 class EventController extends Controller
 {
+
+    public $enableCsrfValidation = false;
+
+
     public function behaviors()
     {
         return [
@@ -27,6 +32,7 @@ class EventController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                    'SendMsg' => ['post'],
                 ],
             ],
         ];
@@ -67,6 +73,22 @@ class EventController extends Controller
             //'showCheckin'  => $checkinUsers,
             
         ]);
+    }
+
+    public function actionSend()
+    {
+        if (Yii::$app->request->isPost) {
+        $filename = UploadedFile::getInstance('', 'attach_file');
+
+        var_dump($filename); die();
+
+            if ($model->validate()) {                
+                $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
+            }
+        }
+
+        echo print_r(Yii::$app->request->post(),1);
+        echo "success";
     }
 
     /**

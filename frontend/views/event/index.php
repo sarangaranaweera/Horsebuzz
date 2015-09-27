@@ -18,7 +18,26 @@ $(document).ready(function() {
 JS;
 $this->registerJs($script);
 
-
+$frmsubmit = <<< JS
+$('body').on('beforeSubmit', ‘form#send_msg', function () {
+     var form = $(this);
+     // return false if form still have some validation errors
+     if (form.find('.has-error').length) {
+          return false;
+     }
+     // submit form
+     $.ajax({
+          url: form.attr('/sndMessage'),
+          type: 'post',
+          data: form.serialize(),
+          success: function (response) {
+               // do something with response
+          }
+     });
+     return false;
+});
+JS;
+$this->registerJs($frmsubmit);
 
 $this->title = 'Events';
 $this->params['breadcrumbs'][] = $this->title;
@@ -98,7 +117,8 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
         //'id',
     
-       ['class' => 'yii\grid\CheckboxColumn'],
+       ['class' => 'yii\grid\CheckboxColumn',
+            ],
 
 
         'firstname',
@@ -115,13 +135,18 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-body">
+    <form action="/Horsebuzz/frontend/web/event/send" enctype="multipart/form-data" method="post" id="send_msg">
+        <?= Html::csrfMetaTags() ?>
       <label class="form-group">Message:</label>
-      <textarea class="form-group"></textarea>
+      <input type="hidden" value="bnZ4aVhIMFEpARk5KwcFMlslGygKAkIHOT0SDBYcVB49NCItAQlXJw==" name="_csrf" >
+      <textarea class="form-group" name="message"></textarea>
       <br>
       <label>Attach File:</label>
       <input type="file" name="attach_file">
       <br>
-      <button class="btn btn-success">Send</button>
+      <input type="submit" value="send" >
+      <!-- <button class="btn btn-success" id="btn_snd">Send</button> -->
+  </form>
   </div>
     </div>
   </div>
