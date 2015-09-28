@@ -111,51 +111,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
    ?>
 
-    <form action="/Horsebuzz/frontend/web/event/send" enctype="multipart/form-data" method="post" id="send_msg">
-
-<?= GridView::widget([
-    'dataProvider' => $dataProvider2,
-    'columns' => [
-        //'id',
-    
-       ['class' => 'yii\grid\CheckboxColumn',
-
-        'checkboxOptions' => function($model, $key, $index, $column) {
-                  return ['value' => $model['id']];
-            }
-       ],
-         
+ 
 
 
-        'firstname',
-        'title',
-        //'created_at:datetime',
-        // ...
-    ],
-]) ?>
 
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Send Message</button>
-
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-body">
-        <?= Html::csrfMetaTags() ?>
-      <label class="form-group">Message:</label>
-      <!-- <input type="hidden" value="bnZ4aVhIMFEpARk5KwcFMlslGygKAkIHOT0SDBYcVB49NCItAQlXJw==" name="_csrf" > -->
-      <textarea class="form-group" name="message"></textarea>
-      <br>
-      <label>Attach File:</label>
-      <input type="file" name="attach_file">
-      <br>
-      <input type="submit" value="send" class="btn btn-success">
-      <!-- <button class="btn btn-success" id="btn_snd">Send</button> -->
-  </form>
-  </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -164,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $this->registerJs('
         var gridview_id = ""; // specific gridview
         var columns = [1]; // index column that will grouping, start 1
-
+              
         var column_data = [];
             column_start = [];
             rowspan = [];

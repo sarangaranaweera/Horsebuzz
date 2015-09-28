@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
+use yii\grid\GridView;
 
 
 /* @var $this yii\web\View */
@@ -11,7 +12,7 @@ use yii\widgets\Pjax;
 
 $script = <<< JS
 $(document).ready(function() {
-    setInterval(function(){ $("#refreshButton").click(); }, 3000);
+    setInterval(function(){ $("#refreshButton").click(); }, 10000);
 });
 JS;
 $this->registerJs($script);
@@ -38,27 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'interest.area_intrest',
-            'title',
-            'description:html',
-            'location',
-            'is_active:boolean',
-            'created_date',
-            [                      // the owner name of the model
-                'label' => 'Created By',
-                'value' => $model->organiser->username,
-            ],
-
-
-        ],
-    ]) ?>
-<?php $time='WELCOME';?>
-<?php Pjax::begin(['timeout' => 3000 ]); ?>
-<?= Html::a("Refresh", ['event/'.$model->id], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
 
 
 <?php
@@ -66,23 +46,60 @@ $this->params['breadcrumbs'][] = $this->title;
 foreach ($messages as $message) {
    
     ?>
-
-    <div class="media">
-  <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="<?php ?>" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading"><?php echo $message['firstname'];?></h4>
-    
+<div class="alert alert-warning" role="alert">
+   <h4 class="media-heading"><?php echo $message['firstname'];?></h4>
     <?php echo $message['message'] ;?>
-  </div>
 </div>
+    
 <?php }
 
 ?>
 
-<?php Pjax::end(); ?>
+<?php //Pjax::end(); ?>
+    <form action="/Horsebuzz/frontend/web/event/send" enctype="multipart/form-data" method="post" id="send_msg">
 
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider2,
+    'columns' => [
+        //'id',
+    
+       ['class' => 'yii\grid\CheckboxColumn',
+
+        'checkboxOptions' => function($model, $key, $index, $column) {
+                  return ['value' => $model['id']];
+            }
+       ],
+         
+
+
+        'firstname',
+        'title',
+        //'created_at:datetime',
+        // ...
+    ],
+]) ?>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Send Message</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
+        <?= Html::csrfMetaTags() ?>
+      <label class="form-group">Message:</label>
+      <!-- <input type="hidden" value="bnZ4aVhIMFEpARk5KwcFMlslGygKAkIHOT0SDBYcVB49NCItAQlXJw==" name="_csrf" > -->
+      <textarea class="form-group" name="message"></textarea>
+      <br>
+      <label>Attach File:</label>
+      <input type="file" name="attach_file">
+      <input type="hidden" name="event_id" value="<?php echo $model->id;?>">
+      <br>
+      <input type="submit" value="send" class="btn btn-success">
+      <!-- <button class="btn btn-success" id="btn_snd">Send</button> -->
+  </form>
+  </div>
+    </div>
+  </div>
+</div>
 </div>

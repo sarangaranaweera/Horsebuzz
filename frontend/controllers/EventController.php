@@ -80,20 +80,23 @@ class EventController extends Controller
 
     public function actionSend()
     {
-         if(\Yii::$app->request->post()){
+         if(\Yii::$app->request->post('selection')){
             foreach (\Yii::$app->request->post('selection') as $value) {
             $model = new Message;
             $model->message = \Yii::$app->request->post('message');
             $model->sender_id = \Yii::$app->user->id;
-            $filename = UploadedFile::getInstance($model, 'attach_file');
-            $this->dd($filename);
                 $model->receiver_id = $value;
                 $model->save();
             } 
+             \Yii::$app->getSession()->setFlash('success', 'Message Sent');
+                return $this->redirect(['event/'.\Yii::$app->request->post('event_id')]);
+        }else{
+             \Yii::$app->getSession()->setFlash('danger', 'Please select users to send message');
+                return $this->redirect(['event/'.\Yii::$app->request->post('event_id')]);
+
         }
            
-                 \Yii::$app->getSession()->setFlash('success', 'Message Sent');
-                return $this->redirect(['index']);
+                
            
     }
        
@@ -113,6 +116,7 @@ class EventController extends Controller
         $query  ->select(['*']) 
         ->distinct() 
         ->from('checkin')
+        ->where('event_id='.$id)
         ->join( 'JOIN', 
                 'message',
                 'message.sender_id =checkin.user_id'
@@ -124,10 +128,13 @@ class EventController extends Controller
 $command = $query->createCommand();
 $data = $command->queryAll();               
 
+        $searchModel2 = new CheckinSearch();
+        $dataProvider2 = $searchModel2->searchUsers(\Yii::$app->user->identity->id);
                         //die();
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'messages' => $data
+            'messages' => $data,
+            'dataProvider2' => $dataProvider2
         ]);
     }
 
