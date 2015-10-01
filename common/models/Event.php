@@ -97,3 +97,7 @@ class Event extends \yii\db\ActiveRecord
         return $this->hasOne(Areaintrest::className(), ['id' => 'interest_id']);
     }
 }
+
+
+
+

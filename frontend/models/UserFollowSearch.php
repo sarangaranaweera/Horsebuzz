@@ -42,7 +42,9 @@ class UserFollowSearch extends UserFollow
      */
     public function search($params)
     {
-        $query = UserFollow::find();
+        $query = UserFollow::find()->where(['organiser_id' => Yii::$app->user->identity->id]);
+
+        //$query->joinWith(['users']);        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

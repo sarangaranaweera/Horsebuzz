@@ -20,6 +20,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-widget-depdrop": "@dev",
+        "kartik-v/yii2-widget-growl": "*",
         "2amigos/yii2-ckeditor-widget": "~1.0",
         "kartik-v/yii2-widget-datetimepicker": "*",
 		"kartik-v/yii2-field-range": "dev-master"

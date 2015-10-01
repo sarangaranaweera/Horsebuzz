@@ -79,7 +79,7 @@ $this->registerJs($js);
         $menuItems[] = [
             'label' => '',
             'items' => [
-                    ['label' => 'Followers', 'url' => '#'],
+                   ['label' => 'Followers', 'url' => '/HorseBuzz/frontend/web/user-follow/'],
                     ['label' => 'Setting', 'url' => '#'],
                     ['label' => 'Logout', 'url' => '#'],
             ],

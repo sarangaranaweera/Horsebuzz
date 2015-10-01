@@ -55,4 +55,9 @@ class UserFollow extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id']);
+    }
 }

@@ -24,6 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn',
+
+        'checkboxOptions' => function($model, $key, $index, $column) {
+                  return ['value' => $model['id']];
+            }
+       ],
 
             'id',
             'user_id',
@@ -37,5 +43,29 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Send Message</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
+        <?= Html::csrfMetaTags() ?>
+      <label class="form-group">Message:</label>
+      <!-- <input type="hidden" value="bnZ4aVhIMFEpARk5KwcFMlslGygKAkIHOT0SDBYcVB49NCItAQlXJw==" name="_csrf" > -->
+      <textarea class="form-group" name="message"></textarea>
+      <br>
+      <label>Attach File:</label>
+      <input type="file" name="attach_file">
+      <input type="hidden" name="event_id" value="<?php //echo $model->id;?>">
+      <br>
+      <input type="submit" value="send" class="btn btn-success">
+      <!-- <button class="btn btn-success" id="btn_snd">Send</button> -->
+  </form>
+  </div>
+    </div>
+  </div>
+</div>
 
 </div>
