@@ -79,7 +79,7 @@ $this->registerJs($js);
         $menuItems[] = [
             'label' => '',
             'items' => [
-                   ['label' => 'Followers', 'url' => '/HorseBuzz/frontend/web/user-follow/'],
+                   ['label' => 'Followers', 'url' => Yii::$app->homeUrl.'user-follow/index'],
                     ['label' => 'Setting', 'url' => '#'],
                     ['label' => 'Logout', 'url' => '#'],
             ],
