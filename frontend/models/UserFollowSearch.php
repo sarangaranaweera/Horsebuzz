@@ -44,7 +44,7 @@ class UserFollowSearch extends UserFollow
     {
         $query = UserFollow::find()->where(['organiser_id' => Yii::$app->user->identity->id]);
 
-        //$query->joinWith(['users']);        
+        $query->joinWith(['users']);        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -67,7 +67,10 @@ class UserFollowSearch extends UserFollow
             'created_by' => $this->created_by,
             'updated_date' => $this->updated_date,
             'updated_by' => $this->updated_by,
+            
         ]);
+
+
 
         return $dataProvider;
     }

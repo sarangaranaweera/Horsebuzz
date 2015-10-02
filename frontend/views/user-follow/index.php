@@ -20,22 +20,23 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $dataProvider2,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             ['class' => 'yii\grid\CheckboxColumn',
-
-        'checkboxOptions' => function($model, $key, $index, $column) {
-                  return ['value' => $model['id']];
-            }
+              
+        // 'checkboxOptions' => function($model, $key, $index, $column) {
+        //           return ['value' => $key];
+        //     }
        ],
 
             'id',
-            'user_id',
-            'organiser_id',
-            'is_follow:boolean',
-            'created_date',
+            'firstname',
+            'lastname',
+            //'lastname',
+            // 'is_follow:boolean',
+            // 'created_date',
             // 'created_by',
             // 'updated_date',
             // 'updated_by',

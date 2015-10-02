@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
+use yii\data\ActiveDataProvider;
 
 /**
  * UserFollowController implements the CRUD actions for UserFollow model.
@@ -25,7 +27,7 @@ class UserFollowController extends Controller
                 ],
             ],
 
-            
+
         ];
     }
 
@@ -38,9 +40,36 @@ class UserFollowController extends Controller
         $searchModel = new UserFollowSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+       
+         $query = new Query;
+        $query  ->select(['user.id','firstname','lastname']) 
+        ->distinct() 
+        ->from('user_follow')
+        ->where('organiser_id='.Yii::$app->user->identity->id)
+        ->join( 'JOIN', 
+                'user',
+                'user_follow.user_id  = user.id'
+            )
+        ->all(); 
+
+        // $command = $query->createCommand();
+        // $data = $command->queryAll();  
+
+        $dataProvider2 = new ActiveDataProvider([
+            'query' => $query,
+            // 'sort' => [
+            //     'defaultOrder' => [
+            //         'user_id' => SORT_ASC,
+            //     ]
+            // ],
+        ]); 
+
+ // echo var_dump($data); die();           
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dataProvider2' => $dataProvider2,
             
         ]);
     }

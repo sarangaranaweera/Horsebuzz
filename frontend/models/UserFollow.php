@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use common\models\Users;
 
 /**
  * This is the model class for table "user_follow".
@@ -56,8 +57,8 @@ class UserFollow extends \yii\db\ActiveRecord
         ];
     }
 
-    public function users()
+    public function getusers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id']);
+        return $this->hasMany(Users::className(), ['id' => 'user_id']);
     }
 }
