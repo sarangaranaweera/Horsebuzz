@@ -25,11 +25,7 @@ class UserFollowController extends Controller
                 ],
             ],
 
-            'access' =>[
-             'class' => AccessControl::className(),
-             'only' => ['index', 'create', 'update', 'view' ],
-             ],
-
+            
         ];
     }
 
