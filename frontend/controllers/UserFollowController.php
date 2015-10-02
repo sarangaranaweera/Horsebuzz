@@ -6,6 +6,7 @@ use Yii;
 use frontend\models\UserFollow;
 use frontend\models\UserFollowSearch;
 use yii\web\Controller;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -23,6 +24,12 @@ class UserFollowController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+
+            'access' =>[
+             'class' => AccessControl::className(),
+             'only' => ['index', 'create', 'update', 'view' ],
+             ],
+
         ];
     }
 
